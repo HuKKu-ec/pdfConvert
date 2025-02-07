@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Download Report as PDF</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+	</head>
+	<!-- <style>
+		iframe {
+			width: 100%;
+			height: 100vh; /* Full viewport height */
+			border: none;
+			display: block; /* Ensure no extra spacing */
+		}
+	</style> -->
+	<body>
+		<h1>click button below to try with html2pdf:</h1>
+		<button id="html2pdf">html2pdf</button>
+		<h1>click button below to try with html2pdf quality boosted:</h1>
+		<button id="html2pdfBoosted">html2pdfBoosted</button>
+		<h1>click button below to try with html2canvas:</h1>
+		<button id="html2canvas">html2canvas</button>
+		<h1>click button below to try with jsPDF:</h1>
+		<p>
+			(it will not work prorperly:because,It only used for text doccuments =>
+			means it will ignore CSS styles, images, tables etc also to support arabic
+			proper font that supports Arabic must be added (jsPDf font embed))
+		</p>
+		<button id="jsPDF">jsPDF</button>
+		<h1>click button below to try with printBtn (iframe.print()):</h1>
+		<button id="printBtn">printBtn</button>
+		<!-- Set height so the iframe properly loads the content -->
+		<iframe
+			id="reportFrame"
+			src="rpt2.html"
+			style="width: 100%; height: 0px; border: none"
+		></iframe>
+
+		<script>
+			const iframe = document.getElementById("reportFrame");
+			// onload i frame START
+			iframe.onload = function () {
+				console.log("Iframe loaded successfully!");
+				const content = iframe.contentWindow.document.body;
+				// html2pdf onclick event
+				document
+					.getElementById("html2pdf")
+					.addEventListener("click", function () {
+						if (!content || content.innerHTML.trim() === "") {
+							alert("Failed to load report.html!");
+							return;
+						}
+						html2pdf().from(content).save("report.pdf");
+					});
+
+				//html2pdf quality increased:
+				document
+					.getElementById("html2pdfBoosted")
+					.addEventListener("click", function () {
+						html2pdf(content, {
+							margin: 5,
+							filename: "report.pdf",
+							image: { type: "jpeg", quality: 1.0 }, // Higher image quality
+							html2canvas: { scale: 2, logging: true, useCORS: true }, // Increase scale for better clarity
+							jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+						});
+					});
+				//only by jsPDF: It only used for text doccuments => means it will ignore CSS styles, images, tables etc  also  to support arabic proper font that supports Arabic must be added (jsPDf font embed)
+				document.getElementById("jsPDF").addEventListener("click", function () {
+					const { jsPDF } = window.jspdf;
+					const pdf = new jsPDF();
+					// Extract text content from report.html
+					const htmlText = iframe.contentWindow.document.body.innerText;
+					const tempDiv = document.createElement("div");
+					tempDiv.innerHTML = htmlText;
+					const reportContent = tempDiv.innerText; // Extract text only
+					// Add extracted text to PDF
+					pdf.text(reportContent, 10, 10);
+					pdf.save("report.pdf");
+				});
+				// html2canvas jsPdf together onclick event  : it will solve abow mentioned jsPDF problems
+				document
+					.getElementById("html2canvas")
+					.addEventListener("click", function () {
+						html2canvas(content, { scale: 2 }).then((canvas) => {
+							const imgData = canvas.toDataURL("image/png");
+							const { jsPDF } = window.jspdf;
+							const pdf = new jsPDF("p", "mm", "a4");
+
+							const imgWidth = 210; // A4 width in mm
+							const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+							pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+							pdf.save("report.pdf");
+						});
+					});
+				// same like ctrl+p but it applyed to iframe
+				document
+					.getElementById("printBtn")
+					.addEventListener("click", function () {
+						if (iframe.contentWindow) {
+							iframe.contentWindow.focus(); // Focus the iframe
+							iframe.contentWindow.print(); // Print the iframe content
+						} else {
+							alert(
+								"Failed to print. Ensure report.html is loading correctly."
+							);
+						}
+					});
+			};
+
+			// onload i frame END
+		</script>
+	</body>
+</html>
