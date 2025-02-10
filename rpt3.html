@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+<head> <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <!-- <link href="{basepath}/rpt/css/bootstrap4.css" rel="stylesheet" />
+    <link href="{basepath}/rpt/css/smart-main.css" rel="stylesheet" />
+    <link href="/myVD/lib/_frame/css/fonts/font-awesome.min.css" rel="stylesheet" /> -->
+   
+
+<style>
+    @font-face {
+        font-family: 'CustomFont';
+        src: url('./DroidKufi-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        width: 80mm;
+        padding: 0;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .invprice,
+    .invamount,
+    .th-price,
+    .th-amount {
+        width: 15mm;
+        text-align: right;
+    }
+
+    .invquantity,
+    .th-qty {
+        width: 10mm;
+        text-align: right;
+    }
+
+    .invnet {
+        width: 24mm;
+        width: 32mm;
+    }
+
+    .invdecimal {
+        text-align: right;
+    }
+
+    .rds-area {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 7mm;
+    }
+
+    .rds-area-left {
+        /*padding-right: 1rem;*/
+    }
+
+    .maeginb {
+        margin-bottom: calc(0% - 9px);
+    }
+
+    body.invprintbody {
+        position: relative;
+        font-family: 'CustomFont', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-weight: 700;
+    }
+  
+</style>
+</head>
+
+<body class="invprintbody busy" style="width: 80mm!important;font-weight:700;margin:0;padding:0;">
+    <div style="width: 80mm!important;font-size: .85rem; padding: 0 2.5mm; margin-top: 70px; page-break-after: always; " normalPrintDisplay>
+        <div style="width:75mm;">
+            <!-- logo -->
+            <div style='text-align: center; font-size: 19px; color: #000; margin-bottom: 6px; font-weight: 600; '> <img
+                    src="14092023112840dec29.png"
+                    class="report-img" style="width:150px;"> </div>
+            <!-- 1head invoice -->
+            <div style='text-align: center; font-size: 19px; color: #000; margin-bottom: 6px; font-weight: 600; '>
+                Invoice / الفــاتــورة </div>
+            <!--2head sale invoice -->
+            <div style='text-align: center; font-size: 14px; color: #000; margin-bottom: 6px;'>Sales Invoice</div>
+            <!--3head main -->
+       
+            <div class="mainStore" style='text-align: center; margin:0px auto;color: #000;'>MAIN STORE / *<span dir="rtl">مخزن&nbsp;كلمـــات&nbsp;الرئيــسي<span></span></div>
+
+            <!--Licence-->
+<div style="display: flex; justify-content: center;">
+    <div class="rds-area rds-50 rds-area-left maeginb" 
+        style="display: inline-flex; align-items: center; justify-content: space-between; width: 100%; text-align: center;">
+        <div class="rds-lbl" style="font-size: 14px; color: #000;">LICENCE NO :</div>
+        <div class="rds-val" style="flex-grow: 1;"></div>
+        <div class="rds-lbl-arb" style="white-space: nowrap;">
+            :<span dir="rtl">رقم الترخيص</span>
+        </div>
+    </div>
+</div>
+
+
+            <!--Date and VAT-->
+            <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 35px;">
+    <tr>
+        <td style="text-align: left; width: 33%;">Date :</td>
+        <td style="width: 33%;">05/02/2025</td>
+        <td style="text-align: right; width: 33%;">: الوقت</td>
+    </tr>
+    <tr>
+        <td style="text-align: left;">VAT Acc #:</td>
+        <td>0001101</td>
+        <td></td>
+    </tr>
+</table>
+
+
+<!-- <div class="rds-area rds-50 rds-area-left maeginb" 
+     style="display: inline-flex; align-items: center; justify-content: space-between; width: 100%; white-space: nowrap;">
+    <div class="rds-lbl" style="flex-grow: 1; text-align: left;">SalesMan :</div>
+    <div class="rds-val" style="flex-grow: 1; text-align: center;">POS_USERDAR</div>
+    <div class="rds-lbl-arb" style="flex-grow: 1; text-align: right;">:<span dir="rtl">البائع</span></div>
+</div>
+
+<div class="rds-area rds-50 rds-area-left maeginb" 
+     style="display: inline-flex; align-items: center; justify-content: space-between; width: 100%; white-space: nowrap;">
+    <div class="rds-lbl" style="flex-grow: 1; text-align: left;">Invoice :</div>
+    <div class="rds-val" style="flex-grow: 1; text-align: center;">0000035343</div>
+    <div class="rds-lbl-arb" style="flex-grow: 1; text-align: right;">: رقم العميل</div>
+</div>
+
+<div class="rds-area rds-50 rds-area-left maeginb" 
+     style="display: inline-flex; align-items: center; justify-content: space-between; width: 100%; white-space: nowrap;">
+    <div class="rds-lbl" style="flex-grow: 1; text-align: left; height: 7mm; padding: 5px 5px 5px 0;">Printed On :</div>
+    <div class="rds-val" style="flex-grow: 1; text-align: center; white-space: normal; min-height: 7mm; padding: 5px 0;">
+        05/02/2025 05:08 PM
+    </div>
+    <div class="rds-lbl-arb" style="flex-grow: 1; text-align: right; margin-left: 10px; padding: 5px 0 5px 5px; height: 7mm;"></div>
+</div>
+
+<div class="rds-area rds-50 rds-area-left maeginb" 
+     style="display: inline-flex; align-items: center; justify-content: space-between; width: 100%; white-space: nowrap;">
+    <div class="rds-lbl" style="flex-grow: 1; text-align: left;">Remarks :</div>
+    <div class="rds-val" style="flex-grow: 1; text-align: center;"></div>
+    <div class="rds-lbl-arb" style="flex-grow: 1; text-align: right;"></div>
+</div> -->
+<table style="width: 100%; border-collapse: collapse; text-align: center;">
+    <tr>
+        <td style="text-align: left; width: 33%;">SalesMan :</td>
+        <td style="width: 33%;">POS_USERDAR</td>
+        <td style="text-align: right; width: 33%;">:<span dir="rtl">البائع</span></td>
+    </tr>
+    <tr>
+        <td style="text-align: left;">Invoice :</td>
+        <td>0000035343</td>
+        <td style="text-align: right;">: رقم العميل</td>
+    </tr>
+    <tr>
+        <td style="text-align: left;">Printed On :</td>
+        <td colspan="2" style="text-align: right; ">05/02/2025 05:08 PM</td>
+    </tr>
+    <tr>
+        <td style="text-align: left;">Remarks :</td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+            <div style="border-bottom:1px solid #000;border-top:1px solid #000;width:100%;">
+                <div style="display: flex; width: 100%;">
+                    <div style="width: 5mm;text-align:center;font-weight:700;">Srno</div>
+                    <div style="width: 30mm;text-align:center;font-weight:700;">Item</div>
+                    <div style="width: 10mm;text-align:right;font-weight:700;">Qty</div>
+                    <div style="width: 15mm; text-align: right; font-weight: 700; ">Price</div>
+                    <div style="width: 15mm; text-align: right; font-weight: 700;">Total</div>
+                </div>
+                <div style="display: flex; width: 100%; border-bottom: 1px solid black; margin-top:5px">
+                    <div style="width: 5mm; text-align: center; font-weight: 700;"></div>
+                    <div style="width: 30mm;text-align:center;font-weight:700;">الصنف</div>
+                    <div style="width: 10mm; text-align: right; font-weight: 700; ">الكمية</div>
+                    <div style="width: 15mm;text-align:right;font-weight:700;">السعر</div>
+                    <div style="width: 15mm; text-align: right; font-weight: 700;">الاجمالى</div>
+                </div>
+                <div style='display: flex; width: 100%;border-top: 1px solid #cdc3c3; padding-top: 3px;font-size:12px;'>
+                    <div style='width: 5mm;align-items: center;text-align:left;'>1</div>
+                    <div class='invquantity' style='width: 10mm;align-items: right;text-align:center;'>1</div>
+                    <div class='invdecimal invprice' style='width: 15mm;align-items: right;text-align:right;'>2.500
+                    </div>
+                    <div class='invdecimal invamount' style='width: 15mm;align-items: right;text-align:right;'>2.500
+                    </div>
+                </div>
+                <div style='margin-top:5px;'>
+                    <div>صديق الموت</div>
+                </div>
+                <div>
+                    <div style='text-align:right;'>صديق الموت</div>
+                </div>
+            </div>
+            <div
+                style='border-top: 1px solid black;display: flex;justify-content: space-between;white-space: nowrap;/* margin-bottom: 20px; */'>
+                Total:<span>2.500</span><span> : الاجمالى</span></div>
+            <div style='display: flex;justify-content: space-between;white-space: nowrap;/* margin-bottom: 20px; */'>
+                Discount:<span style='padding-right:43px;'>0.000</span><span> :الخصم</span></div>
+            <div style='display: flex;justify-content: space-between;white-space: nowrap;/* margin-bottom: 20px; */'>
+                Expenses:<span style='padding-right:28px;'>0.000</span><span>:المصاريف</span></div>
+            <div style='display: flex;justify-content: space-between;white-space: nowrap;/* margin-bottom: 20px; */'>
+                Net:<span>2.500</span><span>:الصافى</span></div>
+            <div class='topbotpadding'
+                style='border-top:1px solid black; justify-content: space-between;white-space: nowrap;'>
+                <div><u><strong>Payment Information:</u></strong></div>
+                <div style='display: flex; justify-content: space-between;white-space: nowrap;'>Cash:<span>2.500</span>
+                </div>
+                <div
+                    style='border-bottom:1px solid black;display: flex; justify-content: space-between;white-space: nowrap;font-weight:700;'>
+                    Total Paid:<span>2.500</span></div>
+                <div style='display: flex; justify-content: space-between;white-space: nowrap;'>
+                    Balance:<span>0.000</span></div>
+            </div>
+            <!--<div style="border-top:1px solid black;border-bottom:1px solid black;width:80mm;display: flex; justify-content: space-between;white-space: nowrap;">Disc:<span>KWD</span><span>0.000</span></div>    <div style="border-top:1px solid black;border-bottom:1px solid black;width:80mm;display: flex; justify-content: space-between;white-space: nowrap;">Total:<span>KWD</span><span>2.500</span></div>-->
+            <!--<div style="border-bottom:1px solid black;margin-bottom:20px;width:80mm;border-top:1px solid black;display: flex; justify-content: space-between;white-space: nowrap;">Cash paid:<span>2.500</span></div>-->
+            <!--<div style="border-bottom:1px solid black;margin-bottom:20px;width:80mm;border-top:1px solid black;display: flex; justify-content: space-between;white-space: nowrap;">Change:<span>KWD</span><span>2.500</span></div>-->
+            <div style="border-top:1px solid black;text-align:center;width:100%;"></div>
+            <div style="border-top:1px solid black;text-align:center;width:100%;"><b>Thank You, Please Visit
+                    Again...</b></div>
+            <div style="border-bottom:1px solid black;text-align:center;"><b>شكرا لزيارتكم</b></div>
+        </div>
+    </div>
+    <div style="width: 70mm; font-size: .85rem; padding: 15mm 5mm; display:none" hidden>
+        <div style="width: 70mm; font-size: .85rem; padding: 1mm 0;">
+            <div style='text-align: center; font-size: 19px; color: #000; margin-bottom: 6px; font-weight: 600; '> <img
+                    src="14092023112840dec29.png"
+                    class="report-img" style="width:150px;"> </div>
+            <div class="div1" style='text-align:center;font-size:1rem;color: #000;'>Gift Invoice</div>
+            <!--<div style='text-align: center; font-size: 14px; color: #000; margin-bottom: 6px;'>Sales Invoice</div>-->
+            <div style='text-align:center;font-size:14px;color: #000;'>MAIN STORE / *مخزن كلمـــات الرئيــسي</div>
+            <div style="font-size: 11px; margin-top: 35px; ">
+                <div class="rds-area rds-50 rds-area-left maeginb" style="white-space: nowrap; flex-wrap: unset;">
+                    <div class="rds-lbl">Date :</div>
+                    <div class="rds-val">05/02/2025</div>
+                    <div class="rds-lbl-arb" style="margin-left: 10px; padding-left: 10px;">: الوقت</div>
+                </div>
+                <div class="rds-area rds-50 rds-area-left maeginb" style="white-space: nowrap; flex-wrap: unset;">
+                    <div style="">VAT Acc #:</div>
+                    <div class="rds-val">0001101</div>
+                    <div class="rds-lbl-arb" style="margin-left: 10px; padding-left: 10px;"></div>
+                </div>
+            </div>
+            <div class="rds-area rds-50 rds-area-left maeginb" style="white-space: nowrap; flex-wrap: unset;">
+                <div class="rds-lbl">SalesMan :</div>
+                <div class="rds-val">POS_USERDAR</div>
+                <div class="rds-lbl-arb" style="margin-left: 10px; padding-left: 10px;">: البائع</div>
+            </div>
+            <div class="rds-area rds-50 rds-area-left maeginb" style="white-space: nowrap; flex-wrap: unset;">
+                <div class="rds-lbl">Invoice :</div>
+                <div class="rds-val">0000035343 </div>
+                <div class="rds-lbl-arb" style="margin-left: 10px; padding-left: 10px;">: رقم العميل</div>
+            </div>
+            <div class="rds-area rds-50 rds-area-left maeginb" style="white-space: nowrap; flex-wrap: unset;
+                align-items: start; height: auto; min-height: 7mm; justify-content: left;">
+                <div class="rds-lbl" style="height: 7mm; padding: 5px 5px 5px 0;">Printed On :</div>
+                <div class="rds-val" style="white-space: normal; min-height: 7mm; padding: 5px 0;">05/02/2025 05:08
+                    PM</div>
+                <div class="rds-lbl-arb" style="margin-left: 10px; padding: 5px 0 5px 5px; height: 7mm;"></div>
+            </div>
+            <div class="rds-area rds-50 rds-area-left" style="white-space: nowrap; flex-wrap: unset; justify-content:
+                left;">
+                <div class="rds-lbl">Remarks :</div>
+                <div class="rds-val"></div>
+                <div class="rds-lbl-arb" style="margin-left: 10px; padding-left: 10px;"></div>
+            </div>
+        </div>
+        <div style="border-bottom: 1px solid #000; border-top: 1px solid #000; width: 100%; ">
+            <div style="display: flex; width: 100%;">
+                <div style="width: 50mm;text-align:left;font-weight:700;">Item/الصنف</div>
+                <div style="width: 15mm;text-align:right;font-weight:700;">Qty/كمية</div>
+            </div>
+        </div>
+        <div style="border-top:1px solid black;text-align:center;width:100%;"></div>
+        <div style="border-top:1px solid black;border-bottom:1px solid black;text-align:center;width:100%;"><b>Thank
+                You, Please Visit Again...</b></div>
+    </div>
+</body>
+
+</html>
