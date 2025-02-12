@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Download Report as PDF</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+	</head>
+	<!-- <style>
+		iframe {
+			width: 100%;
+			height: 100vh; /* Full viewport height */
+			border: none;
+			display: block; /* Ensure no extra spacing */
+		}
+	</style> -->
+	<body>
+		<h1>click button below to try with html2canvas:</h1>
+		<button id="html2canvas">html2canvas</button>
+		<!-- Set height so the iframe properly loads the content -->
+		<iframe
+			id="reportFrame"
+			src="srsp.html"
+			style="width: 100%; height: 0px; border: none"
+		></iframe>
+
+		<script>
+			const iframe = document.getElementById("reportFrame");
+			// onload i frame START
+			iframe.onload = function () {
+				// html2canvas jsPdf together onclick event  : it will solve abow mentioned jsPDF problems
+				document
+					.getElementById("html2canvas")
+					.addEventListener("click", function () {
+						const iframe = document.getElementById("reportFrame");
+						const iframeDocument =
+							iframe.contentDocument || iframe.contentWindow.document;
+
+						html2canvas(iframeDocument.body, { scale: 2 }).then((canvas) => {
+							const imgData = canvas.toDataURL("image/png");
+							const { jsPDF } = window.jspdf;
+							const pdf = new jsPDF("p", "mm", "a4");
+
+							const imgWidth = 210; // A4 width in mm
+							const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+							pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+							pdf.save("report.pdf");
+						});
+					});
+			};
+
+			// onload i frame END
+		</script>
+	</body>
+</html>
